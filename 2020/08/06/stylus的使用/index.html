@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>stylus的使用 | IBean&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Stylus 具有强大的内置于语言层面的函数定义。函数定义与混入（mixins）一致，但是却可以返回值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stylus的使用">
+<meta property="og:url" content="http://yoursite.com/2020/08/06/stylus%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="IBean&#39;s Blog">
+<meta property="og:description" content="Stylus 具有强大的内置于语言层面的函数定义。函数定义与混入（mixins）一致，但是却可以返回值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-06T03:11:23.000Z">
+<meta property="article:modified_time" content="2021-08-27T08:12:46.782Z">
+<meta property="article:author" content="IBean">
+<meta property="article:tag" content="stylus">
+<meta property="article:tag" content="css预编译器">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/archives/" title="IBean&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">IBean&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/archives/" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-stylus的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/06/stylus%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-08-06T03:11:23.000Z" itemprop="datePublished">2020-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/stylus/">stylus</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      stylus的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Stylus 具有强大的内置于语言层面的函数定义。函数定义与混入（mixins）一致，但是却可以返回值。</p>
+<span id="more"></span>
+
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>Stylus 语法是 “python 式”的 （即，基于缩进）。空格很重要，所以我们使用_缩进_和_突出_来代替 { 和 }，如下所示：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">color</span> white</span><br><span class="line"></span><br><span class="line">Which compiles to:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果喜欢，可以使用冒号来分隔属性和值：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">color</span>: white</span><br></pre></td></tr></table></figure>
+
+<h3 id="规则集"><a href="#规则集" class="headerlink" title="规则集"></a>规则集</h3><p>和 CSS 一样，Stylus 允许通过逗号分隔，一次为多个选择器定义属性。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span>, <span class="selector-tag">input</span></span><br><span class="line">  <span class="attribute">border</span> <span class="number">1px</span> solid <span class="number">#eee</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以通过换行书写来实现：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span></span><br><span class="line"><span class="selector-tag">input</span></span><br><span class="line">  <span class="attribute">border</span> <span class="number">1px</span> solid <span class="number">#eee</span></span><br></pre></td></tr></table></figure>
+
+<p>最终都会编译为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span>,</span><br><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于上述原因（或者只是喜欢如此），我们可在末尾添加一个逗号：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foo bar baz,</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">input</span>,</span><br><span class="line">&gt; <span class="selector-tag">a</span></span><br><span class="line">  <span class="attribute">border</span> <span class="number">1px</span> solid</span><br></pre></td></tr></table></figure>
+
+<p>##父级引用</p>
+<p>&amp; 符号代表父级选择器。下面的例子中，（textarea和input）两个选择器的伪类:hover都会改变 color 属性。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span></span><br><span class="line"><span class="selector-tag">input</span></span><br><span class="line">  <span class="attribute">color</span> <span class="number">#A7A7A7</span></span><br><span class="line">  <span class="selector-pseudo">&amp;:hover</span></span><br><span class="line">    <span class="attribute">color</span> <span class="number">#000</span></span><br></pre></td></tr></table></figure>
+
+<p>编译为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">textarea</span>,</span><br><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#a7a7a7</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">textarea</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面的例子中，在混入(mixin)中使用父级引用为 IE 浏览器中的元素加了一个简单的 2px 的边框。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">box-shadow</span><span class="params">()</span></span></span><br><span class="line">  -webkit-<span class="attribute">box-shadow</span> arguments</span><br><span class="line">  -moz-<span class="attribute">box-shadow</span> arguments</span><br><span class="line">  <span class="attribute">box-shadow</span> arguments</span><br><span class="line">  <span class="selector-tag">html</span><span class="selector-class">.ie8</span> &amp;,</span><br><span class="line">  <span class="selector-tag">html</span><span class="selector-class">.ie7</span> &amp;,</span><br><span class="line">  <span class="selector-tag">html</span><span class="selector-class">.ie6</span> &amp;</span><br><span class="line">    <span class="attribute">border</span> <span class="number">2px</span> solid arguments[length(arguments) - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="selector-id">#login</span></span><br><span class="line">    <span class="attribute">box-shadow</span> <span class="number">1px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">#eee</span></span><br></pre></td></tr></table></figure>
+
+<p>编译为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> <span class="selector-id">#login</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">box-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">#eee</span>;</span><br><span class="line">  -moz-<span class="attribute">box-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">#eee</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">1px</span> <span class="number">1px</span> <span class="number">3px</span> <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">html</span><span class="selector-class">.ie8</span> <span class="selector-tag">body</span> <span class="selector-id">#login</span>,</span><br><span class="line"><span class="selector-tag">html</span><span class="selector-class">.ie7</span> <span class="selector-tag">body</span> <span class="selector-id">#login</span>,</span><br><span class="line"><span class="selector-tag">html</span><span class="selector-class">.ie6</span> <span class="selector-tag">body</span> <span class="selector-id">#login</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要在选择器中单纯地使用&amp;符，不使用其父级引用的功能，可以通过转义符\来转义：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.foo</span><span class="selector-attr">[title*=<span class="string">&#x27;\&amp;&#x27;</span>]</span></span><br><span class="line"><span class="comment">// =&gt; .foo[title*=&#x27;&amp;&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>我们可以将表达式赋值给变量，然后在整个样式表中使用变量：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font-size</span> = <span class="number">14px</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">font</span> font-size Arial, sans-serif</span><br></pre></td></tr></table></figure>
+
+<p>编译为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">14px</span> Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量甚至可以包含一个表达式列表：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font-size</span> = <span class="number">14px</span></span><br><span class="line"><span class="attribute">font</span>-stack = <span class="string">&quot;Lucida Grande&quot;</span>, Arial, sans-serif</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">font</span> font-size font-stack</span><br></pre></td></tr></table></figure>
+
+<p>编译为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="number">14px</span> <span class="string">&quot;Lucida Grande&quot;</span>, Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>标识符（变量名，函数等）还可以包含 $ 字符。例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$font</span>-size = <span class="number">14px</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="variable">$font</span>-size sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="属性查找"><a href="#属性查找" class="headerlink" title="属性查找"></a>属性查找</h2><p>Stylus 的另外一个很酷的独特功能是不需要分配值给变量就可以定义引用属性。下面是个很好的例子，元素水平垂直居中对齐（典型的方法是使用百分比和 margin 负值，如下）：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#logo</span></span><br><span class="line">  <span class="attribute">position</span>: absolute</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span></span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span></span><br><span class="line">  <span class="attribute">width</span>: w = <span class="number">150px</span></span><br><span class="line">  <span class="attribute">height</span>: h = <span class="number">80px</span></span><br><span class="line">  <span class="attribute">margin-left</span>: -(w / <span class="number">2</span>)</span><br><span class="line">  <span class="attribute">margin-top</span>: -(h / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>无需定义变量 w 和 h，我们可以仅仅通过前置 @ 字符在属性名前来访问该属性名对应的值：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#logo</span></span><br><span class="line">  <span class="attribute">position</span>: absolute</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span></span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">80px</span></span><br><span class="line">  <span class="attribute">margin-left</span>: -(@width / <span class="number">2</span>)</span><br><span class="line">  <span class="attribute">margin-top</span>: -(@height / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>另外使用案例是基于其他属性有条件地定义属性。在下面这个例子中，我们默认指定z-index值为1，但是，只有在z-index之前未指定的时候才这样：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">position</span><span class="params">()</span></span></span><br><span class="line">  <span class="attribute">position</span>: arguments</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span> unless @z-index</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#logo</span></span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">20</span></span><br><span class="line">  <span class="attribute">position</span>: absolute</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#logo2</span></span><br><span class="line">  <span class="attribute">position</span>: absolute</span><br></pre></td></tr></table></figure>
+
+<p>属性会“向上冒泡”查找堆栈直到被发现，或者返回null（如果属性搞不定）。下面这个例子，@color被弄成了blue. </p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">color</span>: red</span><br><span class="line">  <span class="selector-tag">ul</span></span><br><span class="line">    <span class="selector-tag">li</span></span><br><span class="line">      <span class="attribute">color</span>: blue</span><br><span class="line">      <span class="selector-tag">a</span></span><br><span class="line">        <span class="attribute">background-color</span>: @color</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>Stylus 具有强大的内置于语言层面的函数定义。函数定义与混入（mixins）一致，但是却可以返回值。</p>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>一个很简单的例子：创建一个两数相加的函数。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<p>我们可以将上述函数用在条件表达式中、作为属性值等等。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> </span><br><span class="line">  <span class="attribute">padding</span> add(<span class="number">10px</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>可选参数可以赋值一个表达式。在 Stylus 中，我们甚至可以使用参数列表中左侧的参数为右侧参数赋予默认值！</p>
+<p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b = a)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">(<span class="number">10</span>, <span class="number">5</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; 15</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">(<span class="number">10</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; 20</span></span><br></pre></td></tr></table></figure>
+
+<p>注意： 因为参数默认是赋值，因此我们可以使用函数调用作为默认值：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b = unit(a, px)</span></span>)</span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<h3 id="命名参数"><a href="#命名参数" class="headerlink" title="命名参数"></a>命名参数</h3><p>函数可以接受命名参数。这可以免去记忆参数顺序的麻烦，或者说是提供了代码的可读性。</p>
+<p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">subtract</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> - <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">subtract</span><span class="params">(b: <span class="number">10</span>, a: <span class="number">25</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数体"><a href="#函数体" class="headerlink" title="函数体"></a>函数体</h3><p>我们把 add() 函数做进一步的扩展。通过内置 unit() 函数把所有参数的数值单位都变成 px。因为它为每个参数重新赋值了，并且每个参数都提供了字符串标识数值单位类型，因此，可以无视单位换算的内部机制。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b = a)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> = unit(<span class="selector-tag">a</span>, px)</span><br><span class="line">  <span class="selector-tag">b</span> = unit(<span class="selector-tag">b</span>, px)</span><br><span class="line">  <span class="selector-tag">a</span> + <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">(<span class="number">15%</span>, <span class="number">10deg</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; 25</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="多个返回值"><a href="#多个返回值" class="headerlink" title="多个返回值"></a>多个返回值</h3><p>Stylus 函数可以返回多个值，就像你给一个变量赋予多个值一样。</p>
+<p>例如，下面就是一个有效的赋值：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sizes = <span class="number">15px</span> <span class="number">10px</span></span><br><span class="line"> </span><br><span class="line">sizes<span class="selector-attr">[0]</span></span><br><span class="line"><span class="comment">// =&gt; 15px </span></span><br></pre></td></tr></table></figure>
+
+<p>类似的，我们可以在函数中返回多个值：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sizes</span><span class="params">()</span></span></span><br><span class="line">  <span class="number">15px</span> <span class="number">10px</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sizes</span><span class="params">()</span></span><span class="selector-attr">[0]</span></span><br><span class="line"><span class="comment">// =&gt; 15px</span></span><br></pre></td></tr></table></figure>
+
+<p>当返回值是标识符时是个小小的例外。例如，下面的代码对于 Stylus 来说看上去好像一个属性赋值（但是没有赋值操作符）：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">swap</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">b</span> a</span><br></pre></td></tr></table></figure>
+
+<p>为避免歧义，我们可以使用括号，或是 return 关键字：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">swap</span><span class="params">(a, b)</span></span></span><br><span class="line">  (<span class="selector-tag">b</span> a)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">swap</span><span class="params">(a, b)</span></span></span><br><span class="line">  return <span class="selector-tag">b</span> a</span><br></pre></td></tr></table></figure>
+
+<h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><p>假设我们想要创建一个名为 stringish() 的函数，用来决定参数是否可以转换为字符串。我们检查 val 是否是字符串或缩进（类似字符）。由于未定义的标识符将其自身作为值，因此我们就可以像下面一样对其自身进行比较（使用 yes 和 no 代替 true 和 false）：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">stringish</span><span class="params">(val)</span></span></span><br><span class="line">  <span class="keyword">if</span> val is <span class="selector-tag">a</span> <span class="string">&#x27;string&#x27;</span> or val is <span class="selector-tag">a</span> <span class="string">&#x27;ident&#x27;</span></span><br><span class="line">    yes</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    no</span><br></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">stringish</span><span class="params">(<span class="string">&#x27;yay&#x27;</span>)</span></span> == yes</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="title">stringish</span><span class="params">(yay)</span></span> == yes</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="title">stringish</span><span class="params">(<span class="number">0</span>)</span></span> == no</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>注意: yes 和 no 并不是布尔字面量（boolean literals）。他们在这里只是简单的未定义标识符。</p>
+<p>另外一个例子：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">compare</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="keyword">if</span> <span class="selector-tag">a</span> &gt; <span class="selector-tag">b</span></span><br><span class="line">    higher</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> <span class="selector-tag">a</span> &lt; <span class="selector-tag">b</span></span><br><span class="line">    lower</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    equal</span><br></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">compare</span><span class="params">(<span class="number">5</span>, <span class="number">2</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; higher</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">compare</span><span class="params">(<span class="number">1</span>, <span class="number">5</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; lower</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">compare</span><span class="params">(<span class="number">10</span>, <span class="number">10</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; equal</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>将函数名赋值给一个新的标识符就为其创建了一个别名。例如，我们前面定义的 add() 函数就可以起一个别名叫做 plus()，如下所示：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plus = add</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">plus</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; 3</span></span><br></pre></td></tr></table></figure>
+
+<p>函数作为变量使用</p>
+<p>与为函数起 “别名” 一样，我们可以将函数作为参数传递。如下， invoke() 函数能够接收一个函数作为参数，因此我们可以将 add() 或 sub() 函数作为参数传递给 invoke()。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sub</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> - <span class="selector-tag">b</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">invoke</span><span class="params">(a, b, fn)</span></span></span><br><span class="line">  fn(<span class="selector-tag">a</span>, b)</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">padding</span> invoke(<span class="number">5</span>, <span class="number">10</span>, add)</span><br><span class="line">  <span class="attribute">padding</span> invoke(<span class="number">5</span>, <span class="number">10</span>, sub)</span><br></pre></td></tr></table></figure>
+
+<p>生成：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">15</span>;</span><br><span class="line">  <span class="attribute">padding</span>: -<span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>利用 @(){} 语法可以在需要的地方使用匿名函数。下面展示了如何利用匿名函数创建一个自定义的 sort() 函数：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sort</span><span class="params">(list, fn = null)</span></span></span><br><span class="line">  <span class="comment">// default sort function</span></span><br><span class="line">  <span class="keyword">if</span> fn == null</span><br><span class="line">    fn = @(<span class="selector-tag">a</span>, b) &#123;</span><br><span class="line">      <span class="selector-tag">a</span> &gt; <span class="selector-tag">b</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// bubble sort</span></span><br><span class="line">  <span class="keyword">for</span> <span class="variable">$i</span> <span class="keyword">in</span> <span class="number">1</span>.<span class="selector-class">.length</span>(list) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">$j</span> <span class="keyword">in</span> <span class="number">0</span>..<span class="variable">$i</span> - <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> fn(list<span class="selector-attr">[$j]</span>, list<span class="selector-attr">[$i]</span>)</span><br><span class="line">        <span class="variable">$temp</span> = list<span class="selector-attr">[$i]</span></span><br><span class="line">        list<span class="selector-attr">[$i]</span> = list<span class="selector-attr">[$j]</span></span><br><span class="line">        list<span class="selector-attr">[$j]</span> = <span class="variable">$temp</span></span><br><span class="line">  return list</span><br><span class="line"></span><br><span class="line">  sort(<span class="string">&#x27;e&#x27;</span> <span class="string">&#x27;c&#x27;</span> <span class="string">&#x27;f&#x27;</span> <span class="string">&#x27;a&#x27;</span> <span class="string">&#x27;b&#x27;</span> <span class="string">&#x27;d&#x27;</span>)</span><br><span class="line">  <span class="comment">// =&gt; &#x27;a&#x27; &#x27;b&#x27; &#x27;c&#x27; &#x27;d&#x27; &#x27;e&#x27; &#x27;f&#x27;</span></span><br><span class="line"></span><br><span class="line">  sort(<span class="number">5</span> <span class="number">3</span> <span class="number">6</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span>, @(<span class="selector-tag">a</span>, b)&#123;</span><br><span class="line">    <span class="selector-tag">a</span> &lt; <span class="selector-tag">b</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// =&gt; 6 5 4 3 2 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>arguments 是所有函数体都能够访问的局部变量，包含了传递过来的所有参数。</p>
+<p>例如：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sum</span><span class="params">()</span></span></span><br><span class="line">  n = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> num <span class="keyword">in</span> arguments</span><br><span class="line">    n = n + num</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">sum</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span></span></span><br><span class="line"><span class="comment">// =&gt; 15</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Hash-实例"><a href="#Hash-实例" class="headerlink" title="Hash 实例"></a>Hash 实例</h3><p>下面我们定义了 get(hash, key) 函数，返回 key 的值或 null。我们遍历 hash 中的每个键值对（pair），如果键（key）相匹配则返回对应的值。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, key)</span></span></span><br><span class="line">  return pair<span class="selector-attr">[1]</span> <span class="keyword">if</span> pair<span class="selector-attr">[0]</span> == key <span class="keyword">for</span> pair <span class="keyword">in</span> hash</span><br></pre></td></tr></table></figure>
+
+<p>如下所示，语言内置的函数功能和 Stylus 表达式相结合，能够提供强大的灵活性：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hash = (one <span class="number">1</span>) (two <span class="number">2</span>) (three <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, two)</span></span></span><br><span class="line"><span class="comment">// =&gt; 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, three)</span></span></span><br><span class="line"><span class="comment">// =&gt; 3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, something)</span></span></span><br><span class="line"><span class="comment">// =&gt; null</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><p>Stylus 支持关键字参数或 “kwargs”。这样就能够通过其关联的参数名来引用参数。</p>
+<p>以下示例在功能上是等价的。 然而，我们可以 在参数列表中的任何位置放置关键字参数。 未 设置关键字的参数将被用来填充其余尚未填充的参数。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: rgba(<span class="number">255</span>, <span class="number">200</span>, <span class="number">100</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(red: <span class="number">255</span>, green: <span class="number">200</span>, blue: <span class="number">100</span>, alpha: <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(alpha: <span class="number">0.5</span>, blue: <span class="number">100</span>, red: <span class="number">255</span>, <span class="number">200</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(alpha: <span class="number">0.5</span>, blue: <span class="number">100</span>, <span class="number">255</span>, <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>转换为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: rgba(<span class="number">255</span>,<span class="number">200</span>,<span class="number">100</span>,<span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(<span class="number">255</span>,<span class="number">200</span>,<span class="number">100</span>,<span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(<span class="number">255</span>,<span class="number">200</span>,<span class="number">100</span>,<span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">color</span>: rgba(<span class="number">255</span>,<span class="number">200</span>,<span class="number">100</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若要查看函数或混合（mixin）所能接受的参数，请使用 p() 函数：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span>(rgba)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inspect: rgba(red, green, blue, alpha)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Stylus 支持三种注释方式：单行注释、多行注释和多行缓冲注释。</p>
+<h3 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h3><p>单行注释和 JavaScript 中的注释方式一样，不会输出到最终的 CSS 中：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// I&#x27;m a comment!</span></span><br><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">padding</span> <span class="number">5px</span> // some awesome padding</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h3><p>多行注释看起来有点像 CSS 的常规注释。然而，它们只有在 compress 选项未启用的时候才会被输出。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Adds the given numbers together.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行缓冲注释"><a href="#多行缓冲注释" class="headerlink" title="多行缓冲注释"></a>多行缓冲注释</h3><p>以 /*! 开头的多行注释将被输出。这其实是告诉 Stylus 无论是否压缩（开启 compress 选项）都直接输出此注释。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment"> * Adds the given numbers together.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>目前暂且归纳了这些点，其他相关知识可自行上<a target="_blank" rel="noopener" href="https://stylus.bootcss.com/">stylus中文</a>网查阅！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/06/stylus%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cksu70yyt0003zov74f321v19" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/" rel="tag">css预编译器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stylus/" rel="tag">stylus</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/07/typescript%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          快速上手TypeScript
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/06/layout/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">None</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/stylus/">stylus</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ts/">ts</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B3%E4%BA%8Eapply-%E6%96%B9%E6%B3%95/">关于apply()方法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E6%9B%BF%E6%8D%A2/">数组元素替换</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apply/" rel="tag">apply()</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/" rel="tag">css预编译器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stylus/" rel="tag">stylus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/apply/" style="font-size: 10px;">apply()</a> <a href="/tags/css%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/" style="font-size: 10px;">css预编译器</a> <a href="/tags/stylus/" style="font-size: 10px;">stylus</a> <a href="/tags/typescript/" style="font-size: 10px;">typescript</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/08/27/%E6%95%B0%E7%BB%84%E6%9B%BF%E6%8D%A2/">数组元素替换</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/27/%E5%85%B3%E4%BA%8Eapply()%E6%96%B9%E6%B3%95/">关于apply()方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/07/typescript%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">快速上手TypeScript</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/06/stylus%E7%9A%84%E4%BD%BF%E7%94%A8/">stylus的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/06/layout/">None</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 IBean<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/chitose.model.json"},"display":{"position":"right","width":350,"height":700},"mobile":{"show":false},"log":false});</script></body>
+</html>
